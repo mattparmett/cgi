@@ -7,6 +7,7 @@ import datetime
 
 
 default = "No Value Present"
+today = datetime.datetime.today()
 
 
 print("Content-Type: text/html")
@@ -23,10 +24,10 @@ body = """<html>
 </body>
 </html>""".format(
     software=os.environ.get('SERVER_SOFTWARE', default),
-    script='aaaa',
-    month='bbbb',
-    date='cccc',
-    year='dddd',
-    client_ip='eeee'
+    script=os.environ.get('SCRIPT_NAME', default),
+    month=today.strftime('%B'),
+    date=today.strftime('%d'),
+    year=today.strftime('%Y'),
+    client_ip=os.environ.get('REMOTE_ADDR', default)
 )
 print(body)
